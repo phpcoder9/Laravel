@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -30,7 +33,25 @@ class AuthController extends Controller
             return redirect()->back()->withInput($request->only('email', 'remember'));       
         }
     }
-
+   public function authStore(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8', 
+        ]);
+        $user = new User();
+        if($request->hasFile('image')){
+           $image  =  UploadFile($request,'image','images') ?? null;
+           $user->image = $image;
+        }
+        $user->name = $request->name;
+        $user->email= $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        Auth::login($user);
+        notify()->success('Registration successful');
+        return redirect()->route('dashboard');
+    }
     public function logout(Request $request){
         auth()->logout();
         notify()->success('Logout! You have successfully logged out');

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Hash;
 Route::get('/',[AuthController::class,'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('auth.authenticate');
 Route::get('/register',[AuthController::class,'register'])->name('register');
+Route::post('/auth-store',[AuthController::class,'authStore'])->name('auth.store');
 Route::get('/forgot-password',[ForgotPasswordController::class,'index'])->name('forgot-password');
 
 Route::group(['middleware'=>'auth'],function (){
