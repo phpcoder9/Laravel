@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +32,40 @@ Route::group(['middleware'=>'auth'],function (){
 
 Route::get('/password',function (){
     return Hash::make('12345678');
+});
+
+Route::get('/store-role',function(Request $request){
+    Role::create(['name'=>'writer']);
+    return "true";
+});
+
+
+Route::get('/store-permission',function(Request $request){
+    Permission::create(['name'=>'read']);
+    return "true";
+});
+
+Route::get('/assign-permission',function(){
+    $role = Role::find(1);
+    $permission = Permission::find(1);
+    $role->givePermissionTo($permission);
+    // $permission->assignRole($role); this code also works
+    return true;
+});
+
+Route::get('/remove-permission',function(){
+    $role = Role::find(1);
+    $permission = Permission::find(1);
+    $role->revokePermissionTo($permission);  
+    //$permission->removeRole($role);  this code also work
+    return true;
+});
+
+
+Route::get('/update-permission',function(){
+    $role = Role::find(1);
+    $permission = Permission::find(1);
+    $role->syncPermissions($permission);   
+    // $permission->syncRoles($roles); this code also works
+    return true;
 });
