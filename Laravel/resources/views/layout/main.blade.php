@@ -10,6 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - Mazer Admin Dashboard</title>
   <link rel="stylesheet" href="{{URL('assets/css/main/app.css')}}" />
+
+  <link rel="stylesheet" href="{{URL('assets/extensions/sweetalert2/sweetalert2.min.css')}}" />
+  <link rel="stylesheet" href="{{URL('assets/extensions/toastify-js/src/toastify.css')}}" />
   <link rel="stylesheet" href="{{URL('assets/css/pages/auth.css')}}" />
   <link rel="shortcut icon" href="{{URL('assets/images/logo/favicon.svg')}}" type="image/x-icon" />
   <link rel="shortcut icon" href="{{URL('assets/images/logo/favicon.png')}}" type="image/png" />
@@ -21,8 +24,14 @@
   @yield('content')
   @stack('script')
   @notifyJs
+ 
   <script src="assets/js/bootstrap.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/extensions/jquery/jquery.min.js"></script>
+  <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+  <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+
+  <script src="assets/js/helper.js"></script>
 </body>
 
 

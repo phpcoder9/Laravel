@@ -48,11 +48,15 @@
     </div>
     @stack('script')
     @notifyJs
+    
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
-
+    <script src="assets/extensions/jquery/jquery.min.js"></script>
+    <script src="assets/js/helper.js"></script>
     <!-- Need: Apexcharts -->
     <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
     <script src="assets/js/pages/dashboard.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    <script src="assets/js/pages/sweetalert2.js"></script>
 </body>
 </html>
