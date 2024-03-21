@@ -171,6 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
         CustomeBladeProvider::class,
+        \Mtownsend\RemoveBg\Providers\RemoveBgServiceProvider::class,
     ])->toArray(),
 
     /*
